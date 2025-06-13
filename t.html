@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>IvySchool Merchandise Store</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .store {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .item,
+        .cart {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .item img {
+            width: 125px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .item h3 {
+            margin: 10px 0 5px;
+        }
+
+        .item p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .item button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .item button:hover {
+            background-color: #357ab8;
+        }
+
+        .cart-section {
+            margin-top: 40px;
+        }
+
+        .cart {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .cart h2 {
+            margin-bottom: 15px;
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cart li {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .checkout-btn {
+            background: green;
+            color: white;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background: darkgreen;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>IvySchool Official Merchandise</h1>
+        <p>Plushies, T-shirts, Hoodies, Stationery & More</p>
+    </header>
+
+    <div class="store">
+        <div class="item">
+            <a href="n.html">
+            <img src="Baby shaq plush.png" alt="Plushie" />
+            </a>
+            <h3>IvySchool Plushie</h3>
+            <p>Soft, cuddly IvySchool mascot plush.</p>
+            <strong>₹799</strong><br />
+            <button onclick="addToCart('IvySchool Plushie', 799)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <img src="Ivy pillow.png" alt="T-shirt" />
+            <h3>IvySchool Pillow</h3>
+            <p>Comfortable pillow for people who love ivy!</p>
+            <strong>₹599</strong><br />
+            <button onclick="addToCart('IvySchool Pillow', 599)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <img src="Ivy black hoodie.png" alt="Hoodie" />
+            <h3>IvySchool Hoodie Black</h3>
+            <p>Warm hoodie with embroidered emblem.</p>
+            <strong>₹1299</strong><br />
+            <button onclick="addToCart('IvySchool Hoodie', 1299)">Add to Cart</button>
+        </div>
+        <div class="item">
+            <img src="White ivy hoodie.png" alt="Hoodie" />
+            <h3>IvySchool Hoodie White</h3>
+            <p>Wrap yourself in comfort and class with the IvySchool White Hoodie.</p>
+            <strong>₹1299</strong><br />
+            <button onclick="addToCart('IvySchool Hoodie', 1299)">Add to Cart</button>
+        </div>
+
+
+        <div class="item">
+            <img src="ivy notebook.png" alt="Notebook" />
+            <h3>IvySchool Notebook</h3>
+            <p>Lined pages with durable cover and school crest.</p>
+            <strong>₹299</strong><br />
+            <button onclick="addToCart('IvySchool Notebook', 299)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <img src="Ivy water bottle.png" alt="Bottle" />
+            <h3>IvySchool Water Bottle</h3>
+            <p>Eco-friendly steel bottle with smart cap.</p>
+            <strong>₹349</strong><br />
+            <button onclick="addToCart('IvySchool Water Bottle', 349)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <img src="Ivy cap.png" alt="Cap" />
+            <h3>IvySchool Cap</h3>
+            <p>Adjustable baseball cap with school badge.</p>
+            <strong>₹399</strong><br />
+            <button onclick="addToCart('IvySchool Cap', 399)">Add to Cart</button>
+        </div>
+
+        <div class="item">
+            <img src="Ivy sunglasses.png" alt="Cap" />
+            <h3>Ivy Sunglasses</h3>
+            <p>an awsome pair of shades that will make you look stuning in class!</p>
+            <strong>₹399</strong><br />
+            <button onclick="addToCart('IvySchool Cap', 399)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="cart-section">
+        <div class="cart">
+            <h2>🛒 Shopping Cart</h2>
+            <ul id="cartList"></ul>
+            <p><strong>Total: ₹<span id="totalAmount">0</span></strong></p>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2025 IvySchool. All rights reserved.
+    </footer>
+
+    <script>
+        const cart = [];
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const list = document.getElementById('cartList');
+            const total = document.getElementById('totalAmount');
+            list.innerHTML = '';
+            let sum = 0;
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - ₹${item.price}`;
+                list.appendChild(li);
+                sum += item.price;
+            });
+            total.textContent = sum;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Cart is empty!');
+                return;
+            }
+            const receipt = cart.map(item => `${item.name} - ₹${item.price}`).join('\\n');
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            const blob = new Blob([`IvySchool Receipt\\n\\n${receipt}\\n\\nTotal: ₹${total}`], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'IvySchool_Receipt.txt';
+            link.click();
+            cart.length = 0;
+            updateCart();
+        }
+    </script>
+</body>
+
+</html>

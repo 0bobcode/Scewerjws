@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Whispering Pines Bookstore</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 30px;
+            background: #f2f4f8;
+            color: #2c3e50;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0;
+        }
+
+        h2 {
+            margin-top: 40px;
+        }
+
+        .section {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #f0f0f0;
+            text-align: left;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Whispering Pines Bookstore</h1>
+    <p><strong>Location:</strong> Mussoorie | <strong>Since:</strong> 2003</p>
+
+    <div class="section">
+        <h2>📚 Inventory</h2>
+        <input type="text" id="searchInput" placeholder="Search books by title..." />
+        <table id="inventoryTable">
+            <thead>
+                <tr>
+                    <th>Book ID</th>
+                    <th>Title</th>
+                    <th>Genre</th>
+                    <th>Language</th>
+                    <th>Author</th>
+                    <th>Publisher</th>
+                    <th>Price</th>
+                    <th>Stock</th>
+                    <th>Release Date</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🛒 Buy a Book</h2>
+        <form id="purchaseForm">
+            <label>Select Book:</label>
+            <select id="bookSelect"></select>
+            <label>Your Name:</label>
+            <input type="text" id="userName" required />
+            <label>Your Gmail:</label>
+            <input type="email" id="userEmail" required />
+            <label>I agree to terms of use</label>
+            <input type="checkbox"><br><br>
+            <button type="submit">Buy Book</button>
+        </form>
+        <p id="purchaseMessage" style="color: green;"></p>
+    </div>
+
+    <div class="section">
+        <h2>👥 Some Customers <button onclick="sortCustomers()">Sort A-Z</button></h2>
+        <table id="customersTable">
+            <thead>
+                <tr>
+                    <th>Customer ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Membership</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🧾 Order History</h2>
+        <table id="orderHistoryTable">
+            <thead>
+                <tr>
+                    <th>Customer</th>
+                    <th>Email</th>
+                    <th>Book</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="section">
+        <h2>🤖 sneek peek!</h2>
+        <table >
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Image status</th>
+            <th>Description</th>
+            <th>A short intro</th>
+        </tr>
+        <tr>
+            <td><img src="Boondi2.png" style="width:100px; height: 150px;"></td>
+            <td><h3>Boondi and the secret of the snow</h3></td>
+            <td style="color:#01df01;">Image complete</td>
+            <td><p>As Boondi embarks on a journey though snow he descovers the secrets and wonders of this phenomenon</p></td>
+            <td>
+                <p>The snow in Mussoorie wasn’t just cold — it whispered. Boondi, the runt of the litter, could hear it clearer than
+                anyone.</p>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <img src="Ramayanafortheyoungmind.png" style="width:100px; height: 150px;">
+            </td>
+            <td>
+                <h3>Ramayana for the young mind</h3>
+            </td>
+            <td style='color:#01df01; '>
+                image complete
+            </td>
+            <td><p>
+                This story has the whole Ramayana but scenice kids are different then adults this Ramayana is for kids
+            </p></td>
+            <td>
+                <p>Long ago, in the sacred land of Kosala, the stars themselves paused to witness the birth of a prince whose life would
+                echo across time.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="maxandthemagostorm.png"style="width:100px; height: 150px;">
+            </td>
+            <td>
+                <h3>Max and the Mango Storm</h3>
+            </td>
+            <td style='color:#01df01; '>image complete</td>
+            <td>
+                <p>
+                    One day when max goes on a journey a eerie rain starts  max feels somthing weird then the rain changes.
+                </p>
+                
+            </td>
+            <td>
+                <p>It started with a mango. A golden one. Glowing faintly, buzzing with something more than juice — something electric.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="zakandthesugarwind.png" style="width:100px; height: 150px;">
+            </td>
+            <td>
+                <h3>Zak and the Sugar Wind</h3>
+            </td>
+            <td style="color:#01df01;">Image complete</td>
+            <td>
+                <p>
+                    A sweet wind one day picks zak up he goes to the land of sweetness.
+                </p>
+            </td>
+            <td>
+                <p>Zak first felt the Sugar Wind during recess. It smelled like cotton candy and sounded like a secret. Then it lifted him
+                off the ground.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="boondi1.png" style="width:100px; height: 150px;">
+            </td>
+            <td><h3>Whispers in the Pines the puppy who went to Mussoorie</h3></td>
+            <td style="color:#01df01;">Image complete</td>
+            <td>
+                <p style="color: red;">
+                    Description not avalibe 
+                </p>
+            </td>
+            <td>
+                <p style="color: red;">Not avalibe</p>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="Iablbletoseensleepy.png" style="width:100px; height: 150px;"></td>
+            <td><h3>The code of the mountains</h3></td>
+            <td style="color: #01df01;">Image complete</td>
+            <td><p>Deep: Once i went on a walk that went over so many mountains oh well here it goes</p></td>
+            <td>
+                <p>The mountain didn’t speak in words. It pulsed in patterns, like lines of code. Deep could read them — not just with his
+                eyes, but with his soul.</p>
+            </td>
+        </tr>
+
+        </table>
+
+    </div>
+    <div class="section">
+        <h2>More like this:</h2>
+        <ul>
+            <li><a href="t.html">Ivy merch</a></li>
+            <li>
+                <a>Coming soon!</a>
+            </li>
+            <li>
+                <a>Coming soon!</a>
+            </li>
+        </ul>
+    </div>
+    <script>
+        const books = [
+            { id: "B001", title: "Boondi and the Secret of the Snow", genre: "Nonfiction", lang: "English", author: "Bob Chopra", publisher: "Pine Tree Press", price: "₹399", stock: 5120, release: "2025-05-15" },
+            { id: "B002", title: "Ramayana for the Young Mind", genre: "Philosophy", lang: "Sanskrit", author: "Valmiki", publisher: "Dharma Publications", price: "₹299", stock: 45, release: "2024-11-05" },
+            { id: "B003", title: "Max and the Mango Storm", genre: "Adventure", lang: "English", author: "Max Chopra", publisher: "KidLit World", price: "₹350", stock: 60, release: "2025-03-20" },
+            { id: "B004", title: "The Code of the Mountains", genre: "Tech Fiction", lang: "English", author: "Deep Thakkar", publisher: "Binary Press", price: "₹499", stock: 85, release: "2024-10-10" },
+            { id: "B005", title: "Zak and the Sugar Wind", genre: "Fantasy", lang: "English", author: "Zak Chopra", publisher: "Pine Tree Press", price: "₹420", stock: 100, release: "2025-04-01" },
+            { id: "B006",title: "Whispers in the pines The Puppy Who went to Mussorie", genre: "Nonfiction", lang: "English/Hindi", author: 'Bob Chopra',publisher: 'Pine Tree Press', price: "₹700", stock: 6510, release:"2025-01-10"}
+        ];
+            let customers = [
+                { id: "C1001", name: "Sunita Chopra", email: "sunita@gmail.com", membership: "Gold", location: "Gurgaon, India" },
+                { id: "C1002", name: "Anjli Jain", email: "anjliJain@ElevenXCapital.com", membership: "Platinum", location: "London, UK" },
+                { id: "C1003", name: "Arun Chopra", email: "arunSinghKumar020@gmail.com", membership: "Gold", location: "Miami, USA" },
+                { id: "C1004", name: "Deep Thakkar", email: "deepthakkar007@gmail.com", membership: "Silver", location: "Uthrakand, India" },
+                { id: "C1005", name: "Alma Rivera", email: "almaAwakening@gmail.com", membership: "Gold", location: "Goa, India" },
+                { id: "C1006", name: "Max Chopra", email: "maxchopra21@gmail.com", membership: "Basic", location: "Mussoorie, India" },
+                { id: "C1007", name: "Lilly Chopra", email: "lillyunicorngamer@gmail.com", membership: "Basic", location: "Mussoorie, India" },
+                { id: "C1008", name: "Zak Chopra", email: "zakchopra021@gmail.com", membership: "Basic", location: "Mussoorie, India" },
+                { id: "C1009", name: "Peesh Chopra", email: "peesh@regardefamilia.com", membership: "Silver", location: "Delhi, India" },
+                { id: "C1010", name: "Ravi Khanna", email: "ravi@gmail.com", membership: "Platinum", location: "Singapore" }
+            ];
+
+
+        let orders = [];
+
+        function renderInventory(list = books) {
+            const tbody = document.querySelector('#inventoryTable tbody');
+            tbody.innerHTML = "";
+            list.forEach(book => {
+                tbody.innerHTML += `
+        <tr>
+          <td>${book.id}</td><td>${book.title}</td><td>${book.genre}</td><td>${book.lang}</td>
+          <td>${book.author}</td><td>${book.publisher}</td><td>${book.price}</td>
+          <td>${book.stock}</td><td>${book.release}</td>
+        </tr>`;
+            });
+        }
+
+        function renderBookDropdown() {
+            const select = document.getElementById("bookSelect");
+            select.innerHTML = "";
+            books.forEach(book => {
+                const option = document.createElement("option");
+                option.value = book.id;
+                option.textContent = `${book.title} (${book.price})`;
+                select.appendChild(option);
+            });
+        }
+
+        function renderCustomers(list = customers) {
+            const tbody = document.querySelector("#customersTable tbody");
+            tbody.innerHTML = "";
+            list.forEach(c => {
+                tbody.innerHTML += `<tr>
+        <td>${c.id}</td><td>${c.name}</td><td>${c.email}</td><td>${c.membership}</td><td>${c.location}</td>
+      </tr>`;
+            });
+        }
+
+        function renderOrderHistory() {
+            const tbody = document.querySelector("#orderHistoryTable tbody");
+            tbody.innerHTML = "";
+            orders.forEach(o => {
+                tbody.innerHTML += `<tr>
+        <td>${o.name}</td><td>${o.email}</td><td>${o.book}</td><td>${o.price}</td>
+      </tr>`;
+            });
+        }
+
+        function sortCustomers() {
+            customers = [...customers].sort((a, b) => a.name.localeCompare(b.name));
+            renderCustomers();
+        }
+
+        document.getElementById("searchInput").addEventListener("input", function () {
+            const query = this.value.toLowerCase();
+            const filtered = books.filter(book => book.title.toLowerCase().includes(query));
+            renderInventory(filtered);
+        });
+
+        document.getElementById("purchaseForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("userName").value.trim();
+            const email = document.getElementById("userEmail").value.trim();
+            const bookId = document.getElementById("bookSelect").value;
+            const book = books.find(b => b.id === bookId);
+
+            if (!email.endsWith("@gmail.com")) {
+                alert("Only Gmail addresses are allowed.");
+                return;
+            }
+
+            let existing = customers.find(c => c.email === email);
+            if (!existing) {
+                const newId = "C" + (1000 + customers.length + 1);
+                const newCustomer = { id: newId, name, email, membership: "Basic", location: "Online" };
+                customers.push(newCustomer);
+                renderCustomers();
+            }
+
+            orders.push({ name, email, book: book.title, price: book.price });
+            renderOrderHistory();
+
+            document.getElementById("purchaseMessage").textContent = `Thanks, ${name}! You bought "${book.title}".`;
+            document.getElementById("purchaseForm").reset();
+        });
+
+        // Initial render
+        renderInventory();
+        renderBookDropdown();
+        renderCustomers();
+        renderOrderHistory();
+    </script>
+
+</body>
+
+</html>
