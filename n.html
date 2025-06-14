@@ -2,78 +2,223 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Shaquib Plushie – IvySchool Store</title>
+    <meta charset="UTF-8">
+    <title>Puppy Co – Max’s Puppy & Toy Shop</title>
     <style>
         body {
             font-family: 'Segoe UI', sans-serif;
-            background: #f2f2f2;
-            padding: 40px;
+            margin: 0;
+            background-color: #fffaf5;
             color: #333;
         }
 
-        .product {
-            background: white;
-            max-width: 700px;
+        header {
+            background-color: #ffd54f;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #fbc02d;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            font-style: italic;
+            color: #6d4c41;
+        }
+
+        .section {
+            padding: 40px 20px;
+            max-width: 1000px;
             margin: auto;
-            padding: 30px;
+        }
+
+        .section h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border: 2px solid #ffe082;
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease-in-out;
         }
 
-        img {
-            width: 300px;
-            border-radius: 8px;
-        }
-
-        h1 {
-            margin-top: 0;
-        }
-
-        .price {
-            font-size: 22px;
-            color: #27ae60;
-            margin: 10px 0;
-        }
-
-        button {
-            background: #4a90e2;
-            color: white;
-            padding: 12px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 6px;
+        .product-card:hover {
+            animation: pulse 1s infinite;
             cursor: pointer;
         }
 
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0 5px;
+            font-size: 1.2em;
+        }
+
+        .product-card p {
+            margin: 5px 0;
+            color: #444;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 400px;
+            margin: auto;
+            margin-top: 20px;
+        }
+
+        input,
+        select,
+        button {
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #ffca28;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         button:hover {
-            background: #357ab8;
+            background-color: #ffc107;
+        }
+
+        footer {
+            background-color: #fff3e0;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .description {
+            font-size: 0.9em;
+            color: #777;
+            font-style: italic;
+            margin-top: 5px;
         }
     </style>
 </head>
 
 <body>
-    <div class="product">
-        <img src="A_photograph_features_a_plush_teddy_bear_toy_with_.png" alt="Shaquib Plushie">
-        <h1>Shaquib Plushie</h1>
-        <p>
-            This soft and huggable plushie features the lovable face of Shaquib — rendered in perfect gummy-bear fuzz.
-            Designed for laughs, naps, and a whole lot of hugs.
-        </p>
-        <p class="price">₹799</p>
-        <button onclick="buyShaquib()">Buy Now</button>
+
+    <header>
+        <h1>🐶 Puppy Co</h1>
+        <p>Welcome to Max’s Puppy and Toy Shop!</p>
+    </header>
+
+    <div class="section">
+        <h2>🐕 Puppies for Sale</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="Bestie.png" alt="Golden Pup">
+                <h3>Bestie</h3>
+                <p>2 months old • ₹25,000</p>
+                <p class="description"><strong>Bestie</strong> is gentle, cuddly, and loves belly rubs. A loyal friend
+                    in the making!</p>
+            </div>
+            <div class="product-card">
+                <img src="Rama.png" alt="Beagle Pup">
+                <h3>Rama</h3>
+                <p>3 months old • ₹20,000</p>
+                <p class="description"><strong>Rama</strong> is curious, clever, and always sniffing out new adventures. He’s full of energy and loves to follow you around like a
+                little detective. Perfect for active families and endless games of hide-and-seek!!</p>
+            </div>
+            <div class="product-card">
+                <img src="Boondi.png" alt="Boondi Pup">
+                <h3>Boondi (Mixed)</h3>
+                <p>1.5 months old • ₹15,000 </p>
+                <p class="description"><strong>Boondi</strong> is sweet, smart, and full of heart. He’s got a wag that doesn’t quit and a nose for cuddles. A perfect mix of loyalty
+                and fun — Boondi brings joy to everyone he meets.</p>
+            </div>
+        </div>
     </div>
 
-    <script>
-        function buyShaquib() {
-            const content = `IvySchool Receipt\\n\\nItem: Shaquib Plushie\\nPrice: ₹799\\n\\nThank you for your purchase!`;
-            const blob = new Blob([content], { type: 'text/plain' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = "Shaquib_Plushie_Receipt.txt";
-            link.click();
-        }
-    </script>
+    <div class="section">
+        <h2>🧸 Toys for Your Puppy</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="mrrope.png" alt="Rope Toy">
+                <h3>Rope Toy</h3>
+                <p>Durable fun • ₹399</p>
+            </div>
+            <div class="product-card">
+                <img src="squeakybone.png" alt="Squeaky Bone">
+                <h3>Squeaky Bone</h3>
+                <p>Hours of squeaks • ₹299</p>
+            </div>
+            <div class="product-card">
+                <img src="soft.png" alt="Soft Ball">
+                <h3>Soft Ball</h3>
+                <p>Perfect for puppies • ₹199</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📦 Place an Order</h2>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <select required>
+                <option value="">Select a Product</option>
+                <option value="golden">Golden Retriever (Bestie)</option>
+                <option value="beagle">Beagle</option>
+                <option value="boondi">Boondi</option>
+                <option value="rope">Rope Toy</option>
+                <option value="bone">Squeaky Bone</option>
+                <option value="ball">Soft Ball</option>
+            </select>
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <footer>
+        &copy; 2025 Puppy Co. Created by Max with love for pups!
+    </footer>
+
 </body>
 
 </html>

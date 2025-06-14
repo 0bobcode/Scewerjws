@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Current Water</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #cdeffd, #f0f9ff);
+            color: #034b63;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            margin: 0.5rem 0 0;
+        }
+
+        .section {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #0077b6;
+            font-size: 1.8rem;
+        }
+
+        .faq {
+            margin-top: 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item button {
+            background: none;
+            border: none;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #023e8a;
+            cursor: pointer;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+
+        .faq-item p {
+            display: none;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        footer {
+            background-color: #0077b6;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>💧 Current Water</h1>
+        <p>Helping you make sense of every drop</p>
+    </header>
+
+    <div class="section">
+        <h2>What We Do</h2>
+        <p>
+            At Current Water, we help families and communities track water usage, learn water-saving tips, and answer
+            common water questions. Whether you're wondering how much water a shower uses or why lakes dry up — we've
+            got your back!
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Water Questions & Answers</h2>
+        <div class="faq">
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">🚿 How much water does a 10-minute shower use?</button>
+                <p>About 20 to 25 gallons, depending on your showerhead. Try using a low-flow head to save water!</p>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">🌊 Why are oceans salty?</button>
+                <p>Rivers carry salt and minerals from rocks to the sea, and over millions of years, this makes oceans
+                    salty.</p>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">🧺 What uses more water — washing dishes by hand or
+                    dishwasher?</button>
+                <p>Hand-washing often uses more water unless you're very efficient. Modern dishwashers save water!</p>
+            </div>
+            <div class="faq-item">
+                <button onclick="toggleAnswer(this)">💡 How can I save water at home?</button>
+                <p>Fix leaks, use buckets when washing cars, water plants in the evening, and use water-saving
+                    appliances.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        © 2025 Current Water by Lilly. Keep asking smart questions 💧
+    </footer>
+
+    <script>
+        function toggleAnswer(button) {
+            const p = button.nextElementSibling;
+            p.style.display = p.style.display === "block" ? "none" : "block";
+        }
+    </script>
+
+</body>
+
+</html>
