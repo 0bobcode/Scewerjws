@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>INFINITE FUN!</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(135deg, #ffde59, #ff914d);
+            color: #2d2d2d;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        header h1 {
+            font-size: 4em;
+            text-shadow: 2px 2px #f06292;
+        }
+
+        .section {
+            margin: 40px;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-box {
+            background: #ffecb3;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        #bigCookie {
+            font-size: 100px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        #bigCookie:hover {
+            transform: scale(1.2);
+        }
+
+        .shop-item {
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            background: #fff8dc;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .shop-item button {
+            padding: 5px 10px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .shop-item button:hover {
+            background: #388e3c;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            background: #222;
+            border: 5px solid #fff;
+            border-radius: 10px;
+        }
+
+        #leaderboard ul {
+            list-style: none;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🎉 INFINITE FUN! 🎈</h1>
+        <p>The website where the party never ends!</p>
+    </header>
+
+    <div class="section">
+        <h2>🍪 Cookie Clicker Game</h2>
+        <div class="game-box">
+            <div id="bigCookie">🍪</div>
+            <p id="clickCount">Clicks: 0</p>
+            <div id="shop">
+                <h3>🛒 Cookie Shop</h3>
+                <div class="shop-item">
+                    <span>Glass Helper (+1/sec) - 50 Clicks</span>
+                    <button onclick="buyItem('glass')">Buy</button>
+                </div>
+                <div class="shop-item">
+                    <span>Emerald Helper (+10/sec) - 500 Clicks</span>
+                    <button onclick="buyItem('emerald')">Buy</button>
+                </div>
+                <div class="shop-item">
+                    <span>Sapphire Helper (+100/sec) - 5000 Clicks</span>
+                    <button onclick="buyItem('sapphire')">Buy</button>
+                </div>
+                <div class="shop-item">
+                    <span>Gold Helper (+1000/sec) - 50000 Clicks</span>
+                    <button onclick="buyItem('gold')">Buy</button>
+                </div>
+                <div class="shop-item">
+                    <span>Diamond Helper (+5000/sec) - 250000 Clicks</span>
+                    <button onclick="buyItem('diamond')">Buy</button>
+                </div>
+                <div class="shop-item" id="mysteryItem" style="display:none;">
+                    <span>??? - Beat the Game!</span>
+                    <button onclick="beatGame()">Unlock</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🌧️ Emoji Rain</h2>
+        <canvas id="emojiCanvas" width="400" height="300"></canvas>
+    </div>
+
+    <div class="section">
+        <h2>🎨 Color Match (Coming Soon)</h2>
+        <p>Click the right color before time runs out!</p>
+    </div>
+
+    <div class="section">
+        <h2>❓ Trivia Challenge (Coming Soon)</h2>
+        <p>Answer questions and climb the leaderboard!</p>
+    </div>
+
+    <div class="section">
+        <h2>🔍 Who's That Pokémon?</h2>
+        <div id="pokemonGame">
+            <p id="pokemonHint"></p>
+            <input type="text" id="pokemonGuess" placeholder="Enter your guess...">
+            <button onclick="checkPokemonGuess()">Submit</button>
+            <p id="pokemonResult"></p>
+            <div id="scoreSection" style="display:none;">
+                <p>Your Score: <span id="score">0</span></p>
+                <button onclick="saveScore()">Save Score</button>
+                <button onclick="keepGoing()">Keep Going</button>
+            </div>
+        </div>
+        <div id="leaderboard">
+            <h3>🏆 Leaderboard</h3>
+            <ul id="scoreboard"></ul>
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let cps = 0;
+        const clickDisplay = document.getElementById('clickCount');
+
+        document.getElementById('bigCookie').addEventListener('click', () => {
+            clickCount++;
+            updateDisplay();
+        });
+
+        function updateDisplay() {
+            clickDisplay.textContent = `Clicks: ${clickCount}`;
+            if (clickCount >= 200000) {
+                document.getElementById('mysteryItem').style.display = 'flex';
+            }
+        }
+
+        function buyItem(item) {
+            const prices = {
+                glass: 50,
+                emerald: 500,
+                sapphire: 5000,
+                gold: 50000,
+                diamond: 250000
+            };
+            const power = {
+                glass: 1,
+                emerald: 10,
+                sapphire: 100,
+                gold: 1000,
+                diamond: 5000
+            };
+            if (clickCount >= prices[item]) {
+                clickCount -= prices[item];
+                cps += power[item];
+                updateDisplay();
+            } else {
+                alert('Not enough clicks!');
+            }
+        }
+
+        function beatGame() {
+            alert('🎉 YOU BEAT THE GAME! 🎉');
+        }
+
+        setInterval(() => {
+            clickCount += cps;
+            updateDisplay();
+        }, 1000);
+
+        // Emoji Rain
+        const canvas = document.getElementById("emojiCanvas");
+        const ctx = canvas.getContext("2d");
+        const emojis = ["🎉", "🌈", "🎈", "🍕", "🎮"];
+        const drops = Array(30).fill().map(() => ({
+            emoji: emojis[Math.floor(Math.random() * emojis.length)],
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height
+        }));
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.font = "30px serif";
+            drops.forEach(drop => {
+                ctx.fillText(drop.emoji, drop.x, drop.y);
+                drop.y += 2;
+                if (drop.y > canvas.height) {
+                    drop.y = -30;
+                    drop.x = Math.random() * canvas.width;
+                }
+            });
+            requestAnimationFrame(draw);
+        }
+        draw();
+
+        // Pokémon Guess Game with Leaderboard
+        const pokemonData = [
+            { hint: "This Pokémon is electric-type and has pointy ears.", answer: "pikachu" },
+            { hint: "This Pokémon sleeps a lot and is very large.", answer: "snorlax" },
+            { hint: "This fire-type Pokémon evolves into Charizard.", answer: "charmander" },
+            { hint: "This water-type starter is a turtle with a shell.", answer: "squirtle" },
+            { hint: "This grass-type Pokémon resembles a dinosaur with a bulb.", answer: "bulbasaur" }
+        ];
+
+        let score = 0;
+        let index = 0;
+        let currentPokemon = {};
+        let leaderboard = [];
+
+        function startGame() {
+            index = 0;
+            score = 0;
+            loadNextPokemon();
+        }
+
+        function loadNextPokemon() {
+            currentPokemon = pokemonData[index % pokemonData.length];
+            document.getElementById("pokemonHint").textContent = currentPokemon.hint;
+            document.getElementById("pokemonGuess").value = "";
+            document.getElementById("pokemonResult").textContent = "";
+            document.getElementById("scoreSection").style.display = (index >= 3) ? 'block' : 'none';
+            document.getElementById("score").textContent = score;
+        }
+
+        function checkPokemonGuess() {
+            const guess = document.getElementById("pokemonGuess").value.toLowerCase();
+            const result = document.getElementById("pokemonResult");
+            if (guess === currentPokemon.answer) {
+                score += 10;
+                index++;
+                loadNextPokemon();
+            } else {
+                result.textContent = "❌ Wrong! Game Over.";
+                document.getElementById("scoreSection").style.display = 'block';
+            }
+        }
+
+        function saveScore() {
+            leaderboard.push(score);
+            leaderboard.sort((a, b) => b - a);
+            const scoreboard = document.getElementById("scoreboard");
+            scoreboard.innerHTML = "";
+            leaderboard.slice(0, 5).forEach(s => {
+                const li = document.createElement("li");
+                li.textContent = `Score: ${s}`;
+                scoreboard.appendChild(li);
+            });
+        }
+
+        function keepGoing() {
+            index++;
+            loadNextPokemon();
+        }
+
+        // Start the game initially
+        startGame();
+    </script>
+</body>
+
+</html>
