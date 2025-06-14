@@ -39,38 +39,6 @@
             text-align: center;
         }
 
-        #bigCookie {
-            font-size: 100px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        #bigCookie:hover {
-            transform: scale(1.2);
-        }
-
-        .shop-item {
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            background: #fff8dc;
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .shop-item button {
-            padding: 5px 10px;
-            background: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .shop-item button:hover {
-            background: #388e3c;
-        }
-
         canvas {
             display: block;
             margin: 0 auto;
@@ -79,225 +47,289 @@
             border-radius: 10px;
         }
 
+        .color-boxes {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid #333;
+        }
+
+        #triviaAnswers button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 8px;
+            background: #2196f3;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #triviaAnswers button:hover {
+            background: #1976d2;
+        }
+
+        .pokemon-box {
+            text-align: center;
+        }
+
+        .pokemon-box input {
+            padding: 10px;
+            font-size: 1em;
+        }
+
+        .pokemon-box button {
+            padding: 10px;
+            background-color: #f06292;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .pokemon-box button:hover {
+            background-color: #ec407a;
+        }
+
         #leaderboard ul {
             list-style: none;
             padding: 0;
+        }
+
+        .cookie-section {
+            text-align: center;
+            background: #fff3e0;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        #bigCookie {
+  font-size: 180px;
+  margin: 30px auto;
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 0.1s ease;
+}
+#bigCookie:active {
+  transform: scale(0.95);
+}
+
+
+
+        .shop-item {
+            margin: 10px;
+            padding: 10px;
+            background: #ffe0b2;
+            border-radius: 10px;
         }
     </style>
 </head>
 
 <body>
-
     <header>
         <h1>🎉 INFINITE FUN! 🎈</h1>
         <p>The website where the party never ends!</p>
     </header>
 
     <div class="section">
-        <h2>🍪 Cookie Clicker Game</h2>
-        <div class="game-box">
-            <div id="bigCookie">🍪</div>
-            <p id="clickCount">Clicks: 0</p>
-            <div id="shop">
-                <h3>🛒 Cookie Shop</h3>
-                <div class="shop-item">
-                    <span>Glass Helper (+1/sec) - 50 Clicks</span>
-                    <button onclick="buyItem('glass')">Buy</button>
-                </div>
-                <div class="shop-item">
-                    <span>Emerald Helper (+10/sec) - 500 Clicks</span>
-                    <button onclick="buyItem('emerald')">Buy</button>
-                </div>
-                <div class="shop-item">
-                    <span>Sapphire Helper (+100/sec) - 5000 Clicks</span>
-                    <button onclick="buyItem('sapphire')">Buy</button>
-                </div>
-                <div class="shop-item">
-                    <span>Gold Helper (+1000/sec) - 50000 Clicks</span>
-                    <button onclick="buyItem('gold')">Buy</button>
-                </div>
-                <div class="shop-item">
-                    <span>Diamond Helper (+5000/sec) - 250000 Clicks</span>
-                    <button onclick="buyItem('diamond')">Buy</button>
-                </div>
-                <div class="shop-item" id="mysteryItem" style="display:none;">
-                    <span>??? - Beat the Game!</span>
-                    <button onclick="beatGame()">Unlock</button>
-                </div>
-            </div>
+        <h2>🍪 Cookie Clicker</h2>
+        <div class="cookie-section">
+            <h3>Cookies: <span id="cookieCount">0</span></h3>
+            <div id="bigCookie" onclick="addCookie()">🍪</div>
+            <h4>Shop</h4>
+            <div id="cookieShop"></div>
         </div>
     </div>
 
     <div class="section">
-        <h2>🌧️ Emoji Rain</h2>
-        <canvas id="emojiCanvas" width="400" height="300"></canvas>
+        <h2>🎨 Color Match</h2>
+        <p id="colorInstruction">Click the box that matches the color name!</p>
+        <h3 id="colorName"></h3>
+        <div class="color-boxes" id="colorChoices"></div>
+        <p id="colorFeedback"></p>
     </div>
 
     <div class="section">
-        <h2>🎨 Color Match (Coming Soon)</h2>
-        <p>Click the right color before time runs out!</p>
+        <h2>❓ Trivia Challenge</h2>
+        <div id="trivia">
+            <p id="triviaQuestion"></p>
+            <div id="triviaAnswers"></div>
+            <p id="triviaResult"></p>
+        </div>
     </div>
 
     <div class="section">
-        <h2>❓ Trivia Challenge (Coming Soon)</h2>
-        <p>Answer questions and climb the leaderboard!</p>
-    </div>
-
-    <div class="section">
-        <h2>🔍 Who's That Pokémon?</h2>
-        <div id="pokemonGame">
-            <p id="pokemonHint"></p>
-            <input type="text" id="pokemonGuess" placeholder="Enter your guess...">
+        <h2>🧠 Who's That Pokémon?</h2>
+        <div class="pokemon-box">
+            <p id="pokemonClue"></p>
+            <input id="pokemonGuess" type="text" placeholder="Your guess...">
             <button onclick="checkPokemonGuess()">Submit</button>
-            <p id="pokemonResult"></p>
-            <div id="scoreSection" style="display:none;">
-                <p>Your Score: <span id="score">0</span></p>
-                <button onclick="saveScore()">Save Score</button>
-                <button onclick="keepGoing()">Keep Going</button>
-            </div>
-        </div>
-        <div id="leaderboard">
-            <h3>🏆 Leaderboard</h3>
-            <ul id="scoreboard"></ul>
+            <p id="pokemonFeedback"></p>
+            <div id="pokemonScoreBoard"></div>
         </div>
     </div>
 
     <script>
-        let clickCount = 0;
+        let cookies = 0;
         let cps = 0;
-        const clickDisplay = document.getElementById('clickCount');
+        const upgrades = [
+            { name: 'Glass Helper', cost: 50, cps: 1 },
+            { name: 'Emerald Helper', cost: 250, cps: 10 },
+            { name: 'Sapphire Helper', cost: 1000, cps: 100 },
+            { name: 'Gold Helper', cost: 5000, cps: 1000 },
+            { name: 'Diamond Helper', cost: 20000, cps: 5000 },
+            { name: '???', cost: 200000, cps: 0, win: true }
+        ];
 
-        document.getElementById('bigCookie').addEventListener('click', () => {
-            clickCount++;
-            updateDisplay();
-        });
+        function addCookie() {
+            cookies++;
+            updateCookies();
+        }
 
-        function updateDisplay() {
-            clickDisplay.textContent = `Clicks: ${clickCount}`;
-            if (clickCount >= 200000) {
-                document.getElementById('mysteryItem').style.display = 'flex';
+        function updateCookies() {
+            document.getElementById("cookieCount").textContent = cookies;
+        }
+
+        function buyUpgrade(index) {
+            const upgrade = upgrades[index];
+            if (cookies >= upgrade.cost) {
+                cookies -= upgrade.cost;
+                cps += upgrade.cps;
+                if (upgrade.win) {
+                    alert("🎉 You beat the game with 200,000 cookies!");
+                }
+                updateCookies();
             }
         }
 
-        function buyItem(item) {
-            const prices = {
-                glass: 50,
-                emerald: 500,
-                sapphire: 5000,
-                gold: 50000,
-                diamond: 250000
-            };
-            const power = {
-                glass: 1,
-                emerald: 10,
-                sapphire: 100,
-                gold: 1000,
-                diamond: 5000
-            };
-            if (clickCount >= prices[item]) {
-                clickCount -= prices[item];
-                cps += power[item];
-                updateDisplay();
-            } else {
-                alert('Not enough clicks!');
-            }
-        }
-
-        function beatGame() {
-            alert('🎉 YOU BEAT THE GAME! 🎉');
+        function loadShop() {
+            const shop = document.getElementById("cookieShop");
+            upgrades.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.className = "shop-item";
+                div.innerHTML = `${item.name} - ${item.cost} cookies <button onclick="buyUpgrade(${index})">Buy</button>`;
+                shop.appendChild(div);
+            });
         }
 
         setInterval(() => {
-            clickCount += cps;
-            updateDisplay();
+            cookies += cps;
+            updateCookies();
         }, 1000);
 
-        // Emoji Rain
-        const canvas = document.getElementById("emojiCanvas");
-        const ctx = canvas.getContext("2d");
-        const emojis = ["🎉", "🌈", "🎈", "🍕", "🎮"];
-        const drops = Array(30).fill().map(() => ({
-            emoji: emojis[Math.floor(Math.random() * emojis.length)],
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height
-        }));
+        // Load shop
+        loadShop();
 
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.font = "30px serif";
-            drops.forEach(drop => {
-                ctx.fillText(drop.emoji, drop.x, drop.y);
-                drop.y += 2;
-                if (drop.y > canvas.height) {
-                    drop.y = -30;
-                    drop.x = Math.random() * canvas.width;
+        // Color Match Game
+        const colorNames = ['Red', 'Green', 'Blue', 'Yellow', 'Purple'];
+        const colorValues = ['#f00', '#0f0', '#00f', '#ff0', '#800080'];
+
+        function loadColorMatch() {
+            const index = Math.floor(Math.random() * colorNames.length);
+            document.getElementById("colorName").textContent = colorNames[index];
+            const boxes = document.getElementById("colorChoices");
+            boxes.innerHTML = "";
+            const correct = colorValues[index];
+            const mix = [...colorValues];
+            shuffleArray(mix);
+            mix.forEach((color) => {
+                const div = document.createElement("div");
+                div.className = "color-box";
+                div.style.backgroundColor = color;
+                div.onclick = () => {
+                    document.getElementById("colorFeedback").textContent = (color === correct) ? "✅ Correct!" : "❌ Wrong!";
+                    setTimeout(loadColorMatch, 1000);
                 }
+                boxes.appendChild(div);
             });
-            requestAnimationFrame(draw);
         }
-        draw();
 
-        // Pokémon Guess Game with Leaderboard
-        const pokemonData = [
-            { hint: "This Pokémon is electric-type and has pointy ears.", answer: "pikachu" },
-            { hint: "This Pokémon sleeps a lot and is very large.", answer: "snorlax" },
-            { hint: "This fire-type Pokémon evolves into Charizard.", answer: "charmander" },
-            { hint: "This water-type starter is a turtle with a shell.", answer: "squirtle" },
-            { hint: "This grass-type Pokémon resembles a dinosaur with a bulb.", answer: "bulbasaur" }
+        // Trivia Challenge
+        const triviaQuestions = [
+            {
+                q: "What is the capital of France?",
+                a: ["Paris", "London", "Berlin", "Rome"],
+                c: "Paris"
+            },
+            {
+                q: "What planet is known as the Red Planet?",
+                a: ["Earth", "Venus", "Mars", "Jupiter"],
+                c: "Mars"
+            }
         ];
 
-        let score = 0;
-        let index = 0;
-        let currentPokemon = {};
-        let leaderboard = [];
-
-        function startGame() {
-            index = 0;
-            score = 0;
-            loadNextPokemon();
+        function loadTrivia() {
+            const tIndex = Math.floor(Math.random() * triviaQuestions.length);
+            const q = triviaQuestions[tIndex];
+            document.getElementById("triviaQuestion").textContent = q.q;
+            const answerDiv = document.getElementById("triviaAnswers");
+            answerDiv.innerHTML = "";
+            q.a.forEach(opt => {
+                const btn = document.createElement("button");
+                btn.textContent = opt;
+                btn.onclick = () => {
+                    document.getElementById("triviaResult").textContent = (opt === q.c) ? "✅ Correct!" : `❌ Nope! Correct answer: ${q.c}`;
+                    setTimeout(loadTrivia, 1500);
+                };
+                answerDiv.appendChild(btn);
+            });
         }
 
-        function loadNextPokemon() {
-            currentPokemon = pokemonData[index % pokemonData.length];
-            document.getElementById("pokemonHint").textContent = currentPokemon.hint;
-            document.getElementById("pokemonGuess").value = "";
-            document.getElementById("pokemonResult").textContent = "";
-            document.getElementById("scoreSection").style.display = (index >= 3) ? 'block' : 'none';
-            document.getElementById("score").textContent = score;
+        // Who's That Pokémon
+        const pokemonList = [
+            { clue: "I have a flame on my tail and evolve into Charizard.", name: "Charmander" },
+            { clue: "I am a water-type starter with a shell on my back.", name: "Squirtle" },
+            { clue: "I look like a yellow mouse and use thunder shock!", name: "Pikachu" }
+        ];
+        let pokeIndex = 0;
+        let pokeScore = 0;
+
+        function loadPokemon() {
+            pokeIndex = Math.floor(Math.random() * pokemonList.length);
+            document.getElementById("pokemonClue").textContent = pokemonList[pokeIndex].clue;
         }
 
         function checkPokemonGuess() {
-            const guess = document.getElementById("pokemonGuess").value.toLowerCase();
-            const result = document.getElementById("pokemonResult");
-            if (guess === currentPokemon.answer) {
-                score += 10;
-                index++;
-                loadNextPokemon();
+            const guess = document.getElementById("pokemonGuess").value.trim().toLowerCase();
+            const correct = pokemonList[pokeIndex].name.toLowerCase();
+            if (guess === correct) {
+                pokeScore += 10;
+                document.getElementById("pokemonFeedback").textContent = `✅ Correct! Score: ${pokeScore}`;
+                document.getElementById("pokemonGuess").value = "";
+                loadPokemon();
             } else {
-                result.textContent = "❌ Wrong! Game Over.";
-                document.getElementById("scoreSection").style.display = 'block';
+                document.getElementById("pokemonFeedback").textContent = `❌ Nope! It was ${pokemonList[pokeIndex].name}. Final Score: ${pokeScore}`;
+                savePokemonScore(pokeScore);
+                pokeScore = 0;
             }
         }
 
-        function saveScore() {
-            leaderboard.push(score);
-            leaderboard.sort((a, b) => b - a);
-            const scoreboard = document.getElementById("scoreboard");
-            scoreboard.innerHTML = "";
-            leaderboard.slice(0, 5).forEach(s => {
-                const li = document.createElement("li");
-                li.textContent = `Score: ${s}`;
-                scoreboard.appendChild(li);
-            });
+        function savePokemonScore(score) {
+            const scoreDiv = document.getElementById("pokemonScoreBoard");
+            const entry = document.createElement("p");
+            entry.textContent = `🎉 Score saved: ${score}`;
+            scoreDiv.appendChild(entry);
         }
 
-        function keepGoing() {
-            index++;
-            loadNextPokemon();
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
         }
 
-        // Start the game initially
-        startGame();
+        loadColorMatch();
+        loadTrivia();
+        loadPokemon();
     </script>
 </body>
 
